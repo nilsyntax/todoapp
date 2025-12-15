@@ -1,5 +1,10 @@
-/src/components/*
+
+button.js
+taskitem.js
 dirmap
+/nolonger
+
+
 # VS Code files for those working on multiple tools
 .vscode
 .vscode/*
