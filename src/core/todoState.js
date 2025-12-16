@@ -1,40 +1,46 @@
-// Defined the State and state transition function
-// manage function - add(), toggle(), delete(), edit()
-// Operation for todoItem.js
+import { Todo } from "./todo.js";
 
-import { todoItem } from "./todoItem.js";
-
-export class todoState {
+export class TodoState {
   constructor() {
-    this.todos = [];                // array of todo object   
+    this.todos = [];
   }
 
+  // State actions for todo
+
   add(name) {
-    // referring the key id: is mandetory as value is an expression ()
-    this.todos.push(new todoItem({ id: crypto.randomUUID(), name }));
+    this.todos.push(new Todo({ id: crypto.randomUUID(), name }));
   }
 
   toggle(id) {
-    let getTodo = this.todos.find(function (td) {
-      return td.id == id; // gets the matched todo item object to getTodo
+    let theTodo = this.todos.find(function (td) {
+      return td.id == id; // gets the matched todo item by id
     });
-    if (getTodo) {
-      getTodo.toggle(); // default value false, by calling fillped to true, each call flips it
+    if (theTodo) {
+      theTodo.toggle(); // call toggle()
     }
   }
 
   edit(id, newName) {
-    let getTodo = this.todos.find(function (td) {
+    let theTodo = this.todos.find(function (td) {
       return td.id === id;
     });
-    if (getTodo) {
-      getTodo.update(newName);
+    if (theTodo) {
+      theTodo.update(newName);
     }
   }
 
   delete(id) {
-    this.todos = this.todos.filter(function(td){
-      return td.id !== id;                    // return only the todo obj that doesn't match td.id with id
-    })
+    this.todos = this.todos.filter(function (td) {
+      return td.id !== id; // return only the matched todo obj, except unmatched
+    });
   }
 }
+
+/*
+- Temorary load from storage(if exist)
+- Store state transition operation, add(), toggle(), delete(), edit()
+- Save state change to storage for persistence
+- Notify UI who are suscribed to state change
+
+referring the key id: is mandetory as value is an expression ()
+*/
