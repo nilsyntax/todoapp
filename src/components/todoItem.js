@@ -1,4 +1,4 @@
-export function TodoItem (todo, state){
+export function TodoItem (todo){
   const list = document.createElement('li');
   
   const checkbox = document.createElement('input');
@@ -15,7 +15,7 @@ export function TodoItem (todo, state){
   todoEdit.textContent = "edit";
   const todoDel = createElement('span');
   todoDel.textContent = "delete";
-  itemIcon.append(e, d);
+  itemIcon.append(todoEdit, todoDel);
   
   list.append(checkbox, span, itemIcon)
 }

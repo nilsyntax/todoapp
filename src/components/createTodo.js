@@ -11,7 +11,7 @@ export class TodoFromController {
       if(!this.input.value.trim()) return
       
       this.state.add(this.input.value);
-      this.input.value = ""
+      this.input.value = "";
     })
   }
 } 
