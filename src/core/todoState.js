@@ -3,12 +3,27 @@ import { Todo } from "./todo.js";
 export class TodoState {
   constructor() {
     this.todos = [];
+    this.listener = [];
   }
 
   // State actions for todo
+  subscribe(fn) {
+    this.listener.push(fn); // store UI renderer as state listener
+  }
+
+  notify() {
+    // save to storage
+    // ....
+
+    // notify listener (UI renderer)
+    this.listener.forEach(fn =>  {
+      fn(this.todos);
+    });
+  }
 
   add(name) {
     this.todos.push(new Todo({ id: crypto.randomUUID(), name }));
+    this.notify();
   }
 
   toggle(id) {
@@ -18,6 +33,8 @@ export class TodoState {
     if (theTodo) {
       theTodo.toggle(); // call toggle()
     }
+
+    this.notify();
   }
 
   edit(id, newName) {
@@ -27,12 +44,15 @@ export class TodoState {
     if (theTodo) {
       theTodo.update(newName);
     }
+
+    this.notify();
   }
 
   delete(id) {
     this.todos = this.todos.filter(function (td) {
       return td.id !== id; // return only the matched todo obj, except unmatched
     });
+    this.notify();
   }
 }
 
