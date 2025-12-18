@@ -10,7 +10,7 @@ export class Todo {
   }
 
   // toggle the value of completed by calling (false <-> true)
-  toggle() {
+  checked() {
     this.completed = !this.completed;
   }
 

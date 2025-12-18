@@ -1,19 +1,25 @@
 import { Todo } from "./todo.js";
+import { load, save } from "../utils/storage.js";
+
 
 export class TodoState {
   constructor() {
-    this.todos = [];
+    // this.todos = load();
+    // console.log("from state", this.todos);
+    this.todos = load().map(function(td){
+      return new Todo(td);
+    });
     this.listener = [];
   }
 
   // State actions for todo
-  subscribe(fn) {
+  subscribe(fn) { 
     this.listener.push(fn); // store UI renderer as state listener
   }
 
   notify() {
     // save to storage
-    // ....
+    save(this.todos);
 
     // notify listener (UI renderer)
     this.listener.forEach(fn =>  {
@@ -26,12 +32,12 @@ export class TodoState {
     this.notify();
   }
 
-  toggle(id) {
+  checked(id) {
     let theTodo = this.todos.find(function (td) {
       return td.id == id; // gets the matched todo item by id
     });
     if (theTodo) {
-      theTodo.toggle(); // call toggle()
+      theTodo.checked(); // call check()
     }
 
     this.notify();
@@ -56,11 +62,3 @@ export class TodoState {
   }
 }
 
-/*
-- Temorary load from storage(if exist)
-- Store state transition operation, add(), toggle(), delete(), edit()
-- Save state change to storage for persistence
-- Notify UI who are suscribed to state change
-
-referring the key id: is mandetory as value is an expression ()
-*/
