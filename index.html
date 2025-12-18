@@ -1,18 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo app</title>
-    <link rel="stylesheet" href="/styles/style.css" />
-  </head>
-  <body>
-    <div id="app-root">
-      <form id="todo-form">
-        <input type="text" id="todo-input" placeholder="Add new todo">
-      </form>
-    </div>
 
-    <script type="module" src="src/app.js"></script>
-  </body>
+<head>
+  <meta charset=  "UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="/styles/style.css"> -->
+  <title>Todo App</title>
+</head>
+
+<body>
+  
+  <div id="app-root">
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="Add new todo">
+    </form>
+    <div id="todo-list"></div>
+  </div>
+
+   <script type="module" src="src/app.js"></script> 
+</body>
+
 </html>
