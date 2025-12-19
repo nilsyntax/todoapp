@@ -37,7 +37,7 @@ export class TodoState {
       return td.id == id;                 // gets the matched todo item by id
     });
     if (theTodo) {
-      theTodo.checked();                  // call check()
+      theTodo.checked(id);                  // call check()
     }
 
     this.notify();
