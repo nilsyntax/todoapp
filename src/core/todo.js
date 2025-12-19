@@ -2,9 +2,9 @@
 // (!) No state management
 
 export class Todo {
-  constructor({ id, name, completed = false }) {
+  constructor({ id, context, completed = false }) {
     this.id = id;
-    this.name = name;
+    this.context = context;
     this.completed = completed;     // false
     
   }
@@ -16,6 +16,6 @@ export class Todo {
 
   // Update todo name through func parameter
   update(changedName) {
-    this.name = changedName;
+    this.context = changedName;
   }
 }
