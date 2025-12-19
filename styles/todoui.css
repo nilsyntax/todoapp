@@ -1,0 +1,24 @@
+.todo-item {
+   display: flex;
+   width: 40%;
+   padding: 7px 10px;
+   gap: 10px;
+   border-radius: 3px;
+   background-color: rgb(241, 245, 255);
+}
+
+.todo-item .todo-title {
+   flex: 1;
+   font-size: 16px;
+   outline: none;
+   border: none;
+   /* border: 1px solid royalblue; */
+   background-color: transparent;
+}
+.todo-title::selection {
+   background-color: rgba(255, 127, 187, 0.267);
+}
+
+.completed {
+   text-decoration: line-through;
+}
