@@ -1,63 +1,63 @@
 // Todo Item UI
 export function TodoItem(todo, state) {
-  const todoItem = document.createElement("li");
-
-  // checkbox here
-  const checkbox = document.createElement("input");
-
-  checkbox.type = "checkbox";
-  checkbox.checked = todo.completed;
-  checkbox.addEventListener("click", (e) => {
-    e.preventDefault();
-    state.checked(todo.id);
-    console.log("clicked", todo.id, checkbox.checked);
-  });
+  const todoItem = document.createElement('li')
+  todoItem.classList.add('todo-item')
 
 
   // todo statement
-  const todoName = document.createElement("input");
-  todoName.type = "text";
-  todoName.value = todo.context;
-  todoName.readOnly = true;
-  todoName.classList.add("todo-title");
+  const todoName = document.createElement('input')
+  todoName.type = 'text'
+  todoName.value = todo.context
+  todoName.readOnly = true
+  todoName.classList.add('todo-title')
 
-  Object.assign(todoName.style, {
-    outline: "none",
-    border: "none"
+  let preValue = todo.context
+
+  todoName.addEventListener('click', () => {
+    todoName.readOnly = false
+    todoName.focus()
+    // todoName.select()
   })
 
-  let preValue = todo.context;
-
-  todoName.addEventListener('dblclick', () => {
-    todoName.readOnly = false;
-    todoName.focus();
-    todoName.select();
-  })
-
-  todoName.addEventListener("keydown", (e) => {
+  todoName.addEventListener('keydown', (e) => {
     if (e.key === "Enter") {
-      todoName.blur();
+      todoName.blur()
     }
-    if (e.key === "Escape") {
-      todoName.value = preValue;
-      todoName.blur();
+    if (e.key === 'Escape') {
+      todoName.value = preValue
+      todoName.blur()
     }
   })
 
-  todoName.addEventListener('blur', (e) => {
+  todoName.addEventListener('blur', () => {
 
-    let newValue = todoName.value.trim();
+    let newValue = todoName.value.trim()
     if (!todoName || newValue === preValue) {
-      todoName.value = preValue;
+      todoName.value = preValue
       return
     }
-    state.edit(todo.id, newValue);
+    state.edit(todo.id, newValue)
   })
   // todo statement end
 
+  // checkbox here
+  const checkbox = document.createElement('input')
+
+  checkbox.type = 'checkbox'
+  checkbox.checked = todo.completed
+  checkbox.addEventListener('change', () => {
+    state.checked(todo.id)
+  })
+  if(checkbox.checked === true){
+    todoName.classList.add('completed')
+  }
+  else{
+    todoName.classList.remove('completed')
+  }
 
   // delete button 
-  const todoDel = document.createElement('span');
+  const todoDel = document.createElement('span')
+  todoDel.classList.add('del')
   const icon = document.createElement('img')
 
   icon.src = '/assets/delete-bin-line.svg'
@@ -65,17 +65,17 @@ export function TodoItem(todo, state) {
   icon.style.width = '16px'
   icon.style.height = '16px'
 
-  todoDel.addEventListener('click', (e) => {
-    console.log("Delete Clicked");
-    state.delete(todo.id);
+  todoDel.addEventListener('click', () => {
+    console.log('Delete Clicked')
+    state.delete(todo.id)
   })
 
-  todoDel.appendChild(icon);
+  todoDel.appendChild(icon)
 
-  const iconWrap = document.createElement("div");
-  iconWrap.classList.add("utilIcon");
-  iconWrap.append(todoDel);
+  const iconWrap = document.createElement('div')
+  iconWrap.classList.add('utilIcon')
+  iconWrap.append(todoDel)
 
-  todoItem.append(checkbox, todoName, iconWrap);
-  return todoItem;
+  todoItem.append(checkbox, todoName, iconWrap)
+  return todoItem
 }
