@@ -1,6 +1,6 @@
 .todo-item {
    display: flex;
-   width: 40%;
+   width: 70%;
    padding: 7px 10px;
    gap: 10px;
    border-radius: 3px;
@@ -21,4 +21,5 @@
 
 .completed {
    text-decoration: line-through;
+   opacity: 0.5;
 }

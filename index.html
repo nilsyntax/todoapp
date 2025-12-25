@@ -2,24 +2,33 @@
 <html lang="en">
 
 <head>
-  <meta charset=  "UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/style.css">
   <title>Todo App</title>
 </head>
 
 <body>
-  
+
   <div id="app-root">
-    <h1>My Todo Tracker</h1>
-    <div id="todo-list"></div>
-    <form id="todo-form">
-      <input type="text" id="todo-input" placeholder="Add new todo">
-    </form>
+    <div class="left-section">
+      <h1>My Todo Tracker</h1>
+    </div>
+    
+    <div class="right-section">
+      <div id="todo-list"></div>
+      <form id="todo-form">
+        <div class="form-wrap">
+          <input type="text" id="todo-input" placeholder="Add new todo">
+          <button id="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
   </div>
   <!--<img src="/assets/pencil-fill.svg"-->
 
-   <script type="module" src="src/app.js"></script> 
+  <script type="module" src="src/app.js"></script>
 </body>
 
 </html>
